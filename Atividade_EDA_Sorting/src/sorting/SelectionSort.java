@@ -20,4 +20,8 @@ public class SelectionSort<T extends Comparable<T>> implements Sorting<T> {
 		elements[i] = elements[j];
 		elements[j] = aux;
 	}
+	
+	public String toString() {
+		return "Selection";
+	}
 }

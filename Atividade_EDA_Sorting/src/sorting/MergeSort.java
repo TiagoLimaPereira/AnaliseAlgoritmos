@@ -19,7 +19,7 @@ public class MergeSort<T extends Comparable<T>> implements Sorting<T> {
 	private void merge(T[] elements, int ini, int med, int fim) {
 		T helper[] = (T[]) new Comparable[elements.length];
 		
-		for(int i = 0; i < elements.length; i++) {
+		for(int i = ini; i < fim + 1; i++) {
 			helper[i] = elements[i];
 		}
 		
@@ -45,5 +45,9 @@ public class MergeSort<T extends Comparable<T>> implements Sorting<T> {
 		while(j <= fim) {
 			elements[k++] = helper[j++];
 		}
+	}
+	
+	public String toString() {
+		return "Merge";
 	}
 }

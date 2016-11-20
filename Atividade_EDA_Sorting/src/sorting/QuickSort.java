@@ -9,6 +9,7 @@ public class QuickSort<T extends Comparable<T>> implements Sorting<T> {
 
 	private void quickSort(T[] elements, int ini, int fim) {
 		if(ini < fim) {
+			
 			int indPivot = partciciona(elements, ini, fim);
 			quickSort(elements, ini, indPivot - 1);
 			quickSort(elements, indPivot + 1, fim);
@@ -16,15 +17,14 @@ public class QuickSort<T extends Comparable<T>> implements Sorting<T> {
 	}
 
 	private int partciciona(T[] elements, int ini, int fim) {
+		
 		T pivot = elements[ini];
 		int i = ini;
-		int j = i + 1;
-		while(j < elements.length) {
+		for(int j = ini+1;j <= fim; j++) {
 			if(elements[j].compareTo(pivot) < 0){
 				i++;
 				swap(elements, i, j);
 			}
-			j++;
 		}
 		
 		swap(elements, ini, i);
@@ -35,5 +35,9 @@ public class QuickSort<T extends Comparable<T>> implements Sorting<T> {
 		T aux = elements[i];
 		elements[i] = elements[j];
 		elements[j] = aux;
+	}
+	
+	public String toString() {
+		return "Quick";
 	}
 }
