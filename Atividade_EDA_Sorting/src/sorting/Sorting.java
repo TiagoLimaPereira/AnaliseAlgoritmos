@@ -1,7 +1,7 @@
 package sorting;
 
-public interface Sorting {
+public interface Sorting<T> {
 
-	public void sort(int[] elements);
+	public void sort(T[] elements);
 	
 }

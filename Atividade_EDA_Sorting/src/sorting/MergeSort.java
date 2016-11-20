@@ -1,12 +1,12 @@
 package sorting;
 
-public class MergeSort implements Sorting {
+public class MergeSort<T extends Comparable<T>> implements Sorting<T> {
 
-	public void sort(int[] elements) {
+	public void sort(T[] elements) {
 		mergeSort(elements, 0, elements.length - 1);
 	}
 
-	private void mergeSort(int[] elements, int ini, int fim) {
+	private void mergeSort(T[] elements, int ini, int fim) {
 		
 		if(ini < fim) {
 			int med = (ini + fim) / 2;
@@ -16,8 +16,8 @@ public class MergeSort implements Sorting {
 		}
 	}
 
-	private void merge(int[] elements, int ini, int med, int fim) {
-		int helper[] = new int[elements.length];
+	private void merge(T[] elements, int ini, int med, int fim) {
+		T helper[] = (T[]) new Comparable[elements.length];
 		
 		for(int i = 0; i < elements.length; i++) {
 			helper[i] = elements[i];
@@ -28,7 +28,7 @@ public class MergeSort implements Sorting {
 		int k = ini;
 		
 		while(i <= med && j <= fim) {
-			if(helper[i] < helper[j]) {
+			if(helper[i].compareTo(helper[j]) < 0) {
 				elements[k] = helper[i];
 				i++;
 			}else {
@@ -46,5 +46,4 @@ public class MergeSort implements Sorting {
 			elements[k++] = helper[j++];
 		}
 	}
-
 }

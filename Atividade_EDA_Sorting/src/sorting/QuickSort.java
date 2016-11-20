@@ -1,13 +1,13 @@
 package sorting;
 
-public class QuickSort implements Sorting {
+public class QuickSort<T extends Comparable<T>> implements Sorting<T> {
 
 	
-	public void sort(int[] elements) {
+	public void sort(T[] elements) {
 		quickSort(elements, 0, elements.length - 1);
 	}
 
-	private void quickSort(int[] elements, int ini, int fim) {
+	private void quickSort(T[] elements, int ini, int fim) {
 		if(ini < fim) {
 			int indPivot = partciciona(elements, ini, fim);
 			quickSort(elements, ini, indPivot - 1);
@@ -15,24 +15,24 @@ public class QuickSort implements Sorting {
 		}
 	}
 
-	private int partciciona(int[] elements, int ini, int fim) {
-		int pivot = elements[(ini + fim) /2];
+	private int partciciona(T[] elements, int ini, int fim) {
+		T pivot = elements[ini];
 		int i = ini;
-		int k = ini + 1;
-		while(k <= fim) {
-			if(elements[k] < pivot){
+		int j = i + 1;
+		while(j < elements.length) {
+			if(elements[j].compareTo(pivot) < 0){
 				i++;
-				swap(elements, i, k);
+				swap(elements, i, j);
 			}
-			k++;
+			j++;
 		}
 		
 		swap(elements, ini, i);
 		return i;
 	}
 
-	private void swap(int[] elements, int i, int j) {
-		int aux = elements[i];
+	private void swap(T[] elements, int i, int j) {
+		T aux = elements[i];
 		elements[i] = elements[j];
 		elements[j] = aux;
 	}

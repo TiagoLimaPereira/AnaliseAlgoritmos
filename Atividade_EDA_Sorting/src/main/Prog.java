@@ -3,40 +3,41 @@ package main;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Random;
 
 import sorting.*;
 
-public class Prog<T> {
+public class Prog {
 
-	private static Sorting sorting;
+	private static Sorting<Integer> sorting;
 	
-	public static <E extends Sorting> long executeSorting(E sorting, int[] elements) {
+	public static long executeSorting(Integer[] v) {
 		long tempoInicial = System.currentTimeMillis();
-		sorting.sort(elements);
+		sorting.sort(v);
 		long tempofinal = System.currentTimeMillis();
 		long saida = tempofinal - tempoInicial;
 		return saida;
 	}
 	
-	public static long insertion(int[] v) {
-		sorting = new InsertionSort();
-		return executeSorting(sorting, v);
+	public static long insertion(Integer[] v) {
+		sorting = new InsertionSort<Integer>();
+		return executeSorting(v);
 	}
 
-	public static long selection(int[] v) {
-		sorting = new SelectionSort();
-		return executeSorting(sorting, v);
+	public static long selection(Integer[] v) {
+		sorting = new SelectionSort<Integer>();
+		return executeSorting(v);
 	}
 
-	public static long merge(int[] v) {
-		sorting = new MergeSort();
-		return executeSorting(sorting, v);
+	public static long merge(Integer[] v) {
+		sorting = new MergeSort<Integer>();
+		return executeSorting(v);
 	}
 
-	public static long quick(int[] v) {
-		sorting = new QuickSort();
-		return executeSorting(sorting, v);
+	public static long quick(Integer[] v) {
+		sorting = new QuickSort<Integer>();
+		return executeSorting(v);
 	}
 
 	public static void criaArquivo() throws IOException {
@@ -44,9 +45,10 @@ public class Prog<T> {
 		String ini = "algorithm" + "," + "time" + "," + "sample";
 		out.write(ini);
 		out.newLine();
+		System.out.println("go!");
 		
 		for (int i = 20000; i <= 40000; i += 1000) {
-			int[] v = randomArray(i);
+			Integer[] v = randomArray(i);
 			
 			String selection = "Selection" + "," + selection(v) + "," + i;
 			out.write(selection);
@@ -65,10 +67,11 @@ public class Prog<T> {
 			out.newLine();
 		}
 		out.close();
+		System.out.println("STOP!");
 	}
 	
-	public static int[] randomArray(int tam) {
-		int[] v = new int[tam];
+	public static Integer[] randomArray(int tam) {
+		Integer[] v = new Integer[tam];
 		Random random = new Random();
 		for (int i = 0; i < tam; i++) {
 			v[i] = random.nextInt(tam);
